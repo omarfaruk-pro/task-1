@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    text-align: center;
+    background-color: #f7f7f7;
+    color: #000;
+    position: relative;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+main{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+p.note{
+    font-size: 24px;
+    max-width: 1000px;
+    padding: 16px;
+    margin: auto;
+}
+/* ==========================
+    this is for header style    
+============================== */
+header{
+    padding: 10px 0;
+    box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.2);
+}
+.container{
+    max-width: 1240px;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-content .logo img{
+    width: 200px;
+}
+#main-menu .logo{
+    display: none;
+}
+.header-content ul {
+    display: flex;
+}
+.header-content ul li a{
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 24px;
+}
+li{
+    list-style: none;
+}
+.hamburger {
+    height: 30px;
+    width: 50px;
+    position: relative;
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 3;
+}
+.hamburger span {
+    height: 3px;
+    width: 100%;
+    background-color: purple;
+    display: block;
+    transition: all 0.2s ease-in-out;
+}
+.hamburger.active span{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transition: all .4s ease-in-out;
+    background-color: #fff;
+}
+.hamburger.active .line-1 {
+    transform: rotate(405deg);
+}
+.hamburger.active .line-2 {
+    opacity: 0;
+}
+.hamburger.active .line-3 {
+    transform: rotate(-405deg);
+}
+#close-menu{
+    height: 40px;
+    width: 40px;
+    position: relative;
+    margin-left: auto;
+    display: none;
+    cursor: pointer;
+}
+#close-menu span{
+    height: 3px;
+    width: 100%;
+    background-color: black;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transition: all .4s ease-in-out;
+}
+#close-menu .line-1{
+    transform: rotate(45deg);
+}
+#close-menu .line-2 {
+    transform: rotate(-45deg);
+}
+@media screen and (max-width: 991.98px) {
+    .hamburger {
+        display: flex;
+    }
+    #main-menu{
+        position: fixed;
+        left: -100%;
+        top: 0;
+        width: 70%;
+        height: 100vh;
+        background-color: white;
+        box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.2);
+        padding: 30px;
+        transition: .4s all ease-in-out;
+        z-index: 3;
+    }
+    #main-menu.active {
+        left: 0;
+        overflow-y: auto;
+    }
+    #main-menu .logo{
+        text-align: left;
+        margin: 30px 0;
+        display: block;
+    }
+    .header-content ul{
+        flex-direction: column;
+        gap: 30px;
+        align-items: start;
+    }
+    body.backdrop::after{
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.69);
+        z-index: 1;
+        transition: .4s all ease-in-out;
+    }
+    #close-menu{
+        display: block;
+    }
+}
+h1 {
+    font-size: 60px;
+    text-transform: capitalize;
+    color: purple;
+    margin-bottom: 20px;
+}
+
+/* =======================
+    this is for popup
+========================== */
+.popup-click {
+    font-size: 16px;
+    border: 1px solid purple;
+    background-color: purple;
+    color: white;
+    padding: 10px 35px;
+    border-radius: 10px;
+    text-transform: capitalize;
+}
+.popup-click:hover {
+    background-color: transparent;
+    color: purple;
+}
+.popup {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.568);
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.popup.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content-wrapper {
+    padding: 30px;
+    background-color: white;
+    max-width: 500px;
+    height: fit-content;
+    border-radius: 10px;
+    transform: translate(-50%, -100%); 
+    position: absolute;
+    top: 0;
+    left: 50%;
+    opacity: 0;
+    transition: all .6s ease-in-out;
+}
+
+.popup.open .popup-content-wrapper {
+    transform: translate(-50%, -50%);
+    top: 50%;
+    opacity: 1;
+}
+
+.popup-closing .popup-content-wrapper {
+    top: 0 ;
+}
+.popup.popup-closing{
+    opacity: 1;
+    visibility: visible;
+}
+.popup-close {
+    height: 20px;
+    width: 20px;
+    position: relative;
+    margin-left: auto;
+    margin-bottom: -26px;
+    margin-right: 6px;
+    cursor: pointer;
+}
+.popup-close span {
+    display: block;
+    width: 100%;
+    background-color: purple;
+    height: 3px;
+    position: absolute;
+    top: 50%;
+}
+.popup-close .line-1 {
+    left: 0;
+    transform: rotate(45deg);
+}
+.popup-close .line-2 {
+    right: 0;
+    transform: rotate(-45deg);
+}
+.popup-content p {
+    margin-top: 10px;
+}
+
+
+/* ===========================
+    this is for accordion
+============================ */
+.accordion-area{
+    max-width: 400px;
+    margin: 30px auto;
+    text-align: left;
+}
+.accordion-item{
+    border: 1px solid purple;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+}
+.accordion-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.accordion-head .icon{
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    transition: .4s all ease-in-out;
+}
+.accordion-head .icon::before{
+    content: "";
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: purple;
+}
+.accordion-head .icon::after{
+    content: "";
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: purple;
+}
+.accordion-head.open .icon{
+    transform: rotate(45deg);
+}
+.accordion-content{
+    max-height: 0;
+    overflow: hidden;
+    transition: .4s all ease-in-out;
+}
+
+.accordion-body{
+    margin-top: 10px;
+}
